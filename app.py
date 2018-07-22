@@ -36,6 +36,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def init_api():
     try:
         con = psycopg2.connect(dbname=POSTGRES_DBNAME, user=POSTGRES_USER, host=POSTGRES_HOST, password=POSTGRES_PASSWORD)
+        con.set_session(autocommit=True)
     except Exception as e:
         print("I am unable to connect to the database.")
         print(e)
