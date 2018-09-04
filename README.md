@@ -6,11 +6,6 @@ _“Recurso público retorna ao público”._
 
 Nós somos o **pátio digital**, uma iniciativa da Secretaria Municipal de Educação de São Paulo que, por meio do fortalecimento da transparência, da participação social e do desenvolvimento de novas tecnologias, aproxima diferentes grupos da sociedade civil por um objetivo maior: a melhoria da educação na cidade de São Paulo. 
 
-# Prato Aberto
-
-"Prato Aberto – Comida Boa Não Tem Segredo".
-
-
 ## Conteúdo
 
 1. [Sobre o Fila da creche](#sobre-o-fila-da-creche)
@@ -28,7 +23,7 @@ Para que os pais e famílias possam se programar e acompanhar a geração de vag
 http://filadacreche.sme.prefeitura.sp.gov.br
 
 ## Outros repositórios 
-1.[SME- Prato Aberto](https://github.com/prefeiturasp/SME-FilaDaCreche)
+1.[SME Fila da creche Front-end](https://github.com/prefeiturasp/SME-FilaDaCreche)
 
 ## Comunicação
 
@@ -46,7 +41,6 @@ Qualquer outro grupo de discussão não é reconhecido oficialmente.
 ### Passos iniciais
 - Melhorar a qualidade de código
 - Iniciar a escrita de testes unitários
-- Configurar Docker
 - Transferir front para o github pages
 - Iniciar escrita de testes funcionais
 - Melhorar documentação de maneira enxuta
@@ -54,14 +48,12 @@ Qualquer outro grupo de discussão não é reconhecido oficialmente.
 ## Como contribuir
 
 Contribuições são **super bem vindas**! Se você tem vontade de construir o
-prato aberto conosco, veja o nosso [guia de contribuição](./CONTRIBUTING.md)
+Fila da creche conosco, veja o nosso [guia de contribuição](./CONTRIBUTING.md)
 onde explicamos detalhadamente como trabalhamos e de que formas você pode nos
 ajudar a alcançar nossos objetivos. Lembrando que todos devem seguir 
 nosso [código de conduta](./CODEOFCONDUCT.md).
 
 ## Instalação
-
-## Uso
 
 1. Crie um arquivo `env_file` seguindo o `env_file.sample` como referência.
 1. `docker-compose up`.
