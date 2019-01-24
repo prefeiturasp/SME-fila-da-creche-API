@@ -41,7 +41,6 @@ Qualquer outro grupo de discussão não é reconhecido oficialmente.
 ### Passos iniciais
 - Melhorar a qualidade de código
 - Iniciar a escrita de testes unitários
-- Transferir front para o github pages
 - Iniciar escrita de testes funcionais
 - Melhorar documentação de maneira enxuta
 
@@ -61,7 +60,7 @@ nosso [código de conduta](./CODEOFCONDUCT.md).
 ## Instalação
 
 1. Crie um arquivo `env_file` seguindo o `env_file.sample` como referência.
-2. `docker-compose up`.
+2. `docker-compose up`para executar o projeto.
 3. Servido em `localhost:8080`.
 
 
