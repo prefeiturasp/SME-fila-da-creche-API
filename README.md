@@ -53,11 +53,16 @@ onde explicamos detalhadamente como trabalhamos e de que formas você pode nos
 ajudar a alcançar nossos objetivos. Lembrando que todos devem seguir 
 nosso [código de conduta](./CODEOFCONDUCT.md).
 
+## Dependências
+
+  1. Docker https://docs.docker.com/install/
+  2. Docker Compose https://docs.docker.com/compose/install/
+
 ## Instalação
 
 1. Crie um arquivo `env_file` seguindo o `env_file.sample` como referência.
-1. `docker-compose up`.
-1. Servido em `localhost:8080`.
+2. `docker-compose up`.
+3. Servido em `localhost:8080`.
 
 
 ---
