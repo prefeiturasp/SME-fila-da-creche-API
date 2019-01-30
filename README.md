@@ -6,27 +6,28 @@ _“Recurso público retorna ao público”._
 
 Nós somos o **pátio digital**, uma iniciativa da Secretaria Municipal de Educação de São Paulo que, por meio do fortalecimento da transparência, da participação social e do desenvolvimento de novas tecnologias, aproxima diferentes grupos da sociedade civil por um objetivo maior: a melhoria da educação na cidade de São Paulo. 
 
+<a href="url"><img src="http://patiodigital.prefeitura.sp.gov.br/wp-content/uploads/sites/4/2018/04/logo_fila.jpg" align="left" height="100" width="200" ></a>
+
+
 ## Conteúdo
 
 1. [Sobre o Fila da creche](#sobre-o-fila-da-creche)
 2. [Comunicação](#comunicação)
-3. [Roadmap de tecnologia](#roadmap-de-tecnologia)
-4. [Como contribuir](#como-contribuir)
-5. [Instalação](#instalação)
+3. [Como contribuir](#como-contribuir)
+4. [Dependências](#dependências)
+5. [Organização do projeto](#organização-do-projeto)
+6. [Instalação](#instalação)
+7. [Repositórios relacionados](#repositórios-relacionados)
 
-
-<a href="url"><img src="http://patiodigital.prefeitura.sp.gov.br/wp-content/uploads/sites/4/2018/04/logo_fila.jpg" align="left" height="100" width="200" ></a>
 
 ## Sobre o Fila da Creche 
 
 Para que os pais e famílias possam se programar e acompanhar a geração de vagas na educação infantil, a Secretaria Municipal de Educação de São Paulo, por meio da iniciativa de governo aberto [Pátio Digital](http://patiodigital.prefeitura.sp.gov.br/), lançou uma ferramenta online inédita que permite saber como está a espera de acordo com o endereço fornecido e a faixa etária informada. 
 http://filadacreche.sme.prefeitura.sp.gov.br
 
-## Outros repositórios 
-1.[SME Fila da creche Front-end](https://github.com/prefeiturasp/SME-FilaDaCreche)
+
 
 ## Comunicação
-
 
 | Canal de comunicação | Objetivos |
 |----------------------|-----------|
@@ -35,14 +36,6 @@ http://filadacreche.sme.prefeitura.sp.gov.br
 
 Qualquer outro grupo de discussão não é reconhecido oficialmente.
 
-## Roadmap de tecnologia
-
-
-### Passos iniciais
-- Melhorar a qualidade de código
-- Iniciar a escrita de testes unitários
-- Iniciar escrita de testes funcionais
-- Melhorar documentação de maneira enxuta
 
 ## Como contribuir
 
@@ -52,10 +45,26 @@ onde explicamos detalhadamente como trabalhamos e de que formas você pode nos
 ajudar a alcançar nossos objetivos. Lembrando que todos devem seguir 
 nosso [código de conduta](./CODEOFCONDUCT.md).
 
-## Dependências
 
-  1. Docker https://docs.docker.com/install/
-  2. Docker Compose https://docs.docker.com/compose/install/
+### Passos iniciais para contribuir
+
+- Melhorar a qualidade de código
+- Iniciar a escrita de testes unitários
+- Iniciar escrita de testes funcionais
+- Melhorar documentação de maneira enxuta
+
+
+## Organização do projeto
+
+* Dependências estão citadas em requirements.txt
+* Arquivo .env_file gerência as variáveis de ambiente
+
+
+## Requesitos
+
+1. Docker https://docs.docker.com/install/
+2. Docker Compose https://docs.docker.com/compose/install/
+  
 
 ## Instalação
 
@@ -63,6 +72,10 @@ nosso [código de conduta](./CODEOFCONDUCT.md).
 2. `docker-compose up`para executar o projeto.
 3. Servido em `localhost:8080`.
 
+
+## Repositórios relacionados
+
+[SME Fila da creche Front-end](https://github.com/prefeiturasp/SME-FilaDaCreche)
 
 ---
 
