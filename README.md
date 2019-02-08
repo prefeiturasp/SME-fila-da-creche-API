@@ -19,7 +19,8 @@ Nós somos o **pátio digital**, uma iniciativa da Secretaria Municipal de Educa
 4. [Requesitos](#requesitos)
 5. [Organização do projeto](#organização-do-projeto)
 6. [Instalação](#instalação)
-7. [Repositórios relacionados](#repositórios-relacionados)
+7. [Endpoints de acesso](#endpoints-de-acesso)
+8. [Repositórios relacionados](#repositórios-relacionados)
 
 
 ## Sobre o Fila da Creche 
@@ -74,6 +75,14 @@ nosso [código de conduta](./CODEOFCONDUCT.md).
 2. `docker-compose up`para executar o projeto.
 3. Servido em `localhost:8080`.
 
+
+## Endpoints de acesso
+
+ Para acessar os dados da Api faça um request nos seguintes endpoints:
+ 
+ https://github.com/prefeiturasp/SME-fila-da-creche-API/blob/master/app.py#L63
+ https://github.com/prefeiturasp/SME-fila-da-creche-API/blob/master/app.py#L83
+ https://github.com/prefeiturasp/SME-fila-da-creche-API/blob/master/app.py#L103
 
 ## Repositórios relacionados
 
