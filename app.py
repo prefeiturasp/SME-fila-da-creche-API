@@ -4,6 +4,7 @@ import os
 
 import psycopg2
 from flask import Flask, jsonify, abort, make_response
+from flask_cors import CORS
 from psycopg2.extras import RealDictCursor
 from tenacity import retry, wait_fixed
 
@@ -15,22 +16,9 @@ POSTGRES_HOST = os.getenv("POSTGRES_HOST")
 app = Flask(__name__, static_url_path="")
 
 # FIXME: limit when domain is defined
-from flask_cors import CORS
-
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-
-# auth = HTTPBasicAuth()
-# @auth.get_password
-# def get_password(username):
-#     if username == 'miguel':
-#         return 'python'
-#     return None
-# @auth.error_handler
-# def unauthorized():
-#     return make_response(jsonify( { 'error': 'Unauthorized access' } ), 403)
-#     # return 403 instead of 401 to prevent browsers from displaying the default auth dialog
 
 # wait to see if db is up, 5 seconds between retries
 @retry(wait=wait_fixed(5))
