@@ -1,24 +1,25 @@
 # -*- coding: UTF-8 -*-
 
-import psycopg2
-from psycopg2.extras import RealDictCursor
 import os
-from flask import Flask, jsonify, abort, request, make_response, url_for
-# from flask_httpauth import HTTPBasicAuth
+
+import psycopg2
+from flask import Flask, jsonify, abort, make_response
+from psycopg2.extras import RealDictCursor
 from tenacity import retry, wait_fixed
-from geojson import Feature, Point, FeatureCollection
 
 POSTGRES_USER = os.getenv("POSTGRES_USER")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
-POSTGRES_DBNAME = os.getenv("POSTGRES_DBNAME")
+POSTGRES_DB = os.getenv("POSTGRES_DB")
 POSTGRES_HOST = os.getenv("POSTGRES_HOST")
 
-app = Flask(__name__, static_url_path = "")
+app = Flask(__name__, static_url_path="")
 
 # FIXME: limit when domain is defined
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
+
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 # auth = HTTPBasicAuth()
 # @auth.get_password
@@ -35,32 +36,32 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @retry(wait=wait_fixed(5))
 def init_api():
     try:
-        con = psycopg2.connect(dbname=POSTGRES_DBNAME, user=POSTGRES_USER, host=POSTGRES_HOST, password=POSTGRES_PASSWORD)
+        con = psycopg2.connect(dbname=POSTGRES_DB, user=POSTGRES_USER, host=POSTGRES_HOST, password=POSTGRES_PASSWORD)
         con.set_session(autocommit=True)
     except Exception as e:
         print("I am unable to connect to the database.")
         print(e)
         abort(400)
 
-    cur = con.cursor(cursor_factory = psycopg2.extras.RealDictCursor)
+    cur = con.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
 
     # 2000 meters
     searchRadius = 2000
 
     @app.errorhandler(400)
     def not_found(error):
-        return make_response(jsonify( { 'error': 'Bad request' } ), 400)
+        return make_response(jsonify({'error': 'Bad request'}), 400)
 
     @app.errorhandler(404)
     def not_found(error):
-        return make_response(jsonify( { 'error': 'Not found' } ), 404)
+        return make_response(jsonify({'error': 'Not found'}), 404)
 
-    @app.route('/', methods = ['GET'])
+    @app.route('/', methods=['GET'])
     # @auth.login_required
     def get_hello():
         return 'Hello World.'
 
-    @app.route('/v1/schools/id/<string:cd_unidade_educacao>', methods = ['GET'])
+    @app.route('/v1/schools/id/<string:cd_unidade_educacao>', methods=['GET'])
     # sample url
     # http://localhost:8080/v1/schools/id/091383
     # @auth.login_required
@@ -73,14 +74,14 @@ def init_api():
                 WHERE cd_unidade_educacao = '{cd_unidade_educacao}'
                 """)
                 schools = cur.fetchall()
-                return jsonify( { 'results': schools } )
+                return jsonify({'results': schools})
             else:
                 abort(400)
         except Exception as e:
             print(e)
             abort(400)
 
-    @app.route('/v1/schools/radius/<string:lon>/<string:lat>', methods = ['GET'])
+    @app.route('/v1/schools/radius/<string:lon>/<string:lat>', methods=['GET'])
     # sample url
     # http://localhost:8080/v1/schools/radius/-46.677023599999984/-23.5814295
     # @auth.login_required
@@ -92,15 +93,14 @@ def init_api():
                 WHERE ST_DWithin(geom::geography, ST_SetSRID(ST_MakePoint({lon}, {lat}), 4326), {searchRadius})
                 """)
                 rowsSchools = cur.fetchall()
-                return jsonify( { 'results': rowsSchools } )
+                return jsonify({'results': rowsSchools})
             else:
                 abort(400)
         except Exception as e:
             print(e)
             abort(400)
 
-
-    @app.route('/v1/schools/radius/wait/<string:lon>/<string:lat>/<int:cd_serie>', methods = ['GET'])
+    @app.route('/v1/schools/radius/wait/<string:lon>/<string:lat>/<int:cd_serie>', methods=['GET'])
     # sample url
     # http://localhost:8080/v1/schools/radius/wait/-46.677023599999984/-23.5814295/27
     # @auth.login_required
@@ -131,8 +131,9 @@ def init_api():
                 FROM solicitacao_matricula_grade_dw_atualizacao
                 """)
                 rowsUpdated = cur.fetchall()
-                results = {'wait': rowsWait[0]['count'], 'wait_updated_at': rowsUpdated[0]['updated_at'], 'schools': rowsSchools}
-                return jsonify( { 'results': results } )
+                results = {'wait': rowsWait[0]['count'], 'wait_updated_at': rowsUpdated[0]['updated_at'],
+                           'schools': rowsSchools}
+                return jsonify({'results': results})
             else:
                 abort(400)
         except Exception as e:
@@ -150,6 +151,7 @@ def init_api():
             return True
         else:
             return False
+
 
 init_api()
 
