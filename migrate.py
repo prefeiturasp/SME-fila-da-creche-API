@@ -5,7 +5,7 @@ from tenacity import retry, wait_fixed
 
 POSTGRES_USER = os.getenv("POSTGRES_USER")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
-POSTGRES_DBNAME = os.getenv("POSTGRES_DBNAME")
+POSTGRES_DB = os.getenv("POSTGRES_DB")
 POSTGRES_HOST = os.getenv("POSTGRES_HOST")
 
 # wait to see if db is up, 5 seconds between retries
@@ -13,7 +13,7 @@ POSTGRES_HOST = os.getenv("POSTGRES_HOST")
 def migrate():
     print("Migrating")
     try:
-        con = psycopg2.connect(dbname=POSTGRES_DBNAME, user=POSTGRES_USER, host=POSTGRES_HOST, password=POSTGRES_PASSWORD)
+        con = psycopg2.connect(dbname=POSTGRES_DB, user=POSTGRES_USER, host=POSTGRES_HOST, password=POSTGRES_PASSWORD)
         cur = con.cursor()
         # cur.execute("DROP TABLE IF EXISTS solicitacao_matricula_grade_dw")
         cur.execute("""CREATE TABLE IF NOT EXISTS solicitacao_matricula_grade_dw(

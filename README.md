@@ -16,7 +16,7 @@ Nós somos o **pátio digital**, uma iniciativa da Secretaria Municipal de Educa
 1. [Sobre o Fila da creche](#sobre-o-fila-da-creche)
 2. [Comunicação](#comunicação)
 3. [Como contribuir](#como-contribuir)
-4. [Requesitos](#requesitos)
+4. [Requisitos](#requisitos)
 5. [Organização do projeto](#organização-do-projeto)
 6. [Instalação](#instalação)
 7. [Endpoints de acesso](#endpoints-de-acesso)
