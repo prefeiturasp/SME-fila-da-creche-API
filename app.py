@@ -12,6 +12,7 @@ POSTGRES_USER = os.getenv("POSTGRES_USER")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
 POSTGRES_DB = os.getenv("POSTGRES_DB")
 POSTGRES_HOST = os.getenv("POSTGRES_HOST")
+POSTGRES_PORT = os.getenv("POSTGRES_PORT")
 
 app = Flask(__name__, static_url_path="")
 
@@ -24,7 +25,8 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @retry(wait=wait_fixed(5))
 def init_api():
     try:
-        con = psycopg2.connect(dbname=POSTGRES_DB, user=POSTGRES_USER, host=POSTGRES_HOST, password=POSTGRES_PASSWORD)
+        con = psycopg2.connect(dbname=POSTGRES_DB, user=POSTGRES_USER, host=POSTGRES_HOST,
+                               password=POSTGRES_PASSWORD, port=POSTGRES_PORT)
         con.set_session(autocommit=True)
     except Exception as e:
         print("I am unable to connect to the database.")
