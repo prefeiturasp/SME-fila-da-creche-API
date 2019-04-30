@@ -2,4 +2,4 @@ __pycache__
 .env
 env_file
 imports.sql
-index
+map_data

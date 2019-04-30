@@ -9,6 +9,14 @@ services:
     volumes:
       - .:/opt/services/flaskapp/src
 
+  maps:
+    image: klokantech/osmnames-sphinxsearch
+    ports:
+      - 777:80
+    volumes:
+      - ./map_data/index:/data/index
+      - ./map_data/input:/data/input
+
   nginx:
     image: "nginx:1.13.5"
     ports:
