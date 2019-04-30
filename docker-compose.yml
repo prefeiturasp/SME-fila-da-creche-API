@@ -44,8 +44,10 @@ services:
       - flaskapp
 networks:
   db_nw:
-    driver: bridge
+    external:
+      name: fila-da-creche-api-db
   web_nw:
-    driver: bridge
+    external:
+      name: fila-da-creche-api-web
 volumes:
   dbdata:
