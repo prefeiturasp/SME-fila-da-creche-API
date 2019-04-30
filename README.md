@@ -72,8 +72,11 @@ nosso [código de conduta](./CODEOFCONDUCT.md).
 ## Instalação
 
 1. Crie um arquivo `env_file` seguindo o `env_file.sample` como referência.
-2. `docker-compose up`para executar o projeto.
-3. Servido em `localhost:8080`.
+2. Crie as redes externas que não conflitem com sua rede.
+2.1. `docker network create fila-da-creche-api-db --subnet xxx.xxx.xxx.xxx/xx`
+2.2. `docker network create fila-da-creche-api-web --subnet xxx.xxx.xxx.xxx/xx`
+3. `docker-compose up`para executar o projeto.
+4. Servido em `localhost:8080`.
 
 
 ## Endpoints de acesso
