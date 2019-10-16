@@ -98,11 +98,15 @@ def init_api():
         try:
             # FIXME: validate by bouding box too
             if validate_wait_request(lat, lon, cd_serie):
+                if cd_serie in [1, 4]:
+                    raio_busca = 1500
+                elif cd_serie in [27, 28]:
+                    raio_busca = 2000
                 cur.execute(f"""
                 SELECT *, (ST_Distance(geom::geography, ST_SetSRID(ST_MakePoint({lon}, {lat}), 4326)) / 1000) as distance FROM unidades_educacionais_ativas_endereco_contato AS u
                 LEFT JOIN unidades_educacionais_infantil_vagas_serie as v
                 ON u.cd_unidade_educacao = v.cd_unidade_educacao
-                WHERE ST_DWithin(geom::geography, ST_SetSRID(ST_MakePoint({lon}, {lat}), 4326), {searchRadius})
+                WHERE ST_DWithin(geom::geography, ST_SetSRID(ST_MakePoint({lon}, {lat}), 4326), {raio_busca})
                   AND v.vagas_cd_serie_{cd_serie} IS NOT NULL
                 ORDER BY distance
                 """)
@@ -112,7 +116,7 @@ def init_api():
                 FROM unidades_educacionais_ativas_endereco_contato AS u
                 LEFT JOIN solicitacao_matricula_grade_dw AS s
                 ON u.cd_unidade_educacao::integer = s.cd_unidade_educacao
-                WHERE ST_DWithin(geom::geography, ST_SetSRID(ST_MakePoint({lon}, {lat}), 4326), {searchRadius})
+                WHERE ST_DWithin(geom::geography, ST_SetSRID(ST_MakePoint({lon}, {lat}), 4326), {raio_busca})
                   AND s.cd_serie_ensino = {cd_serie}
                 """)
                 rowsWait = cur.fetchall()
