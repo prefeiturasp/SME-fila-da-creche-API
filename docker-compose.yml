@@ -22,6 +22,6 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./conf.d:/etc/nginx/conf.d
+      - ./central.conf:/etc/nginx/central.conf
     depends_on:
       - flaskapp
