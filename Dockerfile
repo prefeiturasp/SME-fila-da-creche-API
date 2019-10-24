@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.6.9
 MAINTAINER Ameya Lokare <lokare.ameya@gmail.com>
 
 ENV PYTHONUNBUFFERED 1
