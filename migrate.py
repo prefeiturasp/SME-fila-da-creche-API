@@ -8,7 +8,6 @@ POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
 POSTGRES_DB = os.getenv("POSTGRES_DB")
 POSTGRES_HOST = os.getenv("POSTGRES_HOST")
 
-
 # wait to see if db is up, 5 seconds between retries
 @retry(wait=wait_fixed(5))
 def migrate():
@@ -55,18 +54,13 @@ def migrate():
         tp_escola integer,
         sg_tp_escola character varying(60),
         vagas_cd_serie_1 integer,
-        vagas_remanecentes_1         integer,
         vagas_cd_serie_4 integer,
-        vagas_remanecentes_4         integer,
         vagas_cd_serie_27 integer,
-        vagas_remanecentes_27        integer,
         vagas_cd_serie_28 integer,
-        vagas_remanecentes_28        integer,
         sg_tipo_situacao_unidade character varying(60)
         )""")
         cur.execute("CREATE EXTENSION IF NOT EXISTS postgis")
-        cur.execute(
-            "ALTER TABLE unidades_educacionais_ativas_endereco_contato ADD COLUMN IF NOT EXISTS geom geometry(Point, 4326)")
+        cur.execute("ALTER TABLE unidades_educacionais_ativas_endereco_contato ADD COLUMN IF NOT EXISTS geom geometry(Point, 4326)")
         cur.execute("""UPDATE unidades_educacionais_ativas_endereco_contato
         SET geom = ST_SetSrid(ST_MakePoint(cd_longitude, cd_latitude), 4326)
         WHERE geom IS NULL AND cd_longitude IS NOT NULL AND cd_latitude IS NOT NULL
@@ -84,6 +78,5 @@ def migrate():
     finally:
         if con:
             con.close()
-
 
 migrate()
